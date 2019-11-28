@@ -126,7 +126,7 @@ namespace Results_Processing
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        static double StandardDeviation(List<double> input)
+        public static double StandardDeviation(List<double> input)
         {
             var srX = Avg(input);
             double sum = 0;

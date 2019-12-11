@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Select_Target;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace Results_Processing
     {
         static void Main(string[] args)
         {
+            table t9 = new table(table.table9);
             List<double> Results = new List<double>();
             try
             {
@@ -57,11 +59,12 @@ namespace Results_Processing
                         break;
                     case 2:
                         Console.Write("Доверительный интервал для среднего: ");
-                        Console.WriteLine(ConfidenceIntervalString(Results));
+                        var t = t9.getValue(0.99);
+                        Console.WriteLine(ConfidenceIntervalString(Results, t));
                         break;
                     case 3:
                         Console.Write("Доверительный интервал для среднего: ");
-                        Console.WriteLine(ConfidenceIntervalString(Results));
+                        //Console.WriteLine(ConfidenceIntervalString(Results));
                         break;
                     default:
                         Console.WriteLine("неизвестный пункт");
@@ -87,9 +90,8 @@ namespace Results_Processing
         /// </summary>
         /// <param name="input">Список значений</param>
         /// <returns></returns>
-        static string ConfidenceIntervalString(List<double> input)
+        static string ConfidenceIntervalString(List<double> input, double t)
         {
-            double t = 2.576;//Значение интеграла вероятностей, из таблицы
             double E = ConfidenceInterval(input, t);
             string output = "+-" + E.ToString();
             return output;

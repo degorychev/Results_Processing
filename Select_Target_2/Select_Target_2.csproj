@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9172BC64-7463-4ED9-BEEF-ED176674CEA8}</ProjectGuid>
+    <ProjectGuid>{EDC6214C-C480-4432-874F-D4DD9B7E7E2B}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Results_Processing</RootNamespace>
-    <AssemblyName>Results_Processing</AssemblyName>
+    <RootNamespace>Select_Target_2</RootNamespace>
+    <AssemblyName>Select_Target_2</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -48,17 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="input.txt">
+    <None Include="tables\table12.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Select Target\Select Target.csproj">
-      <Project>{3ddf1df5-0170-4b9e-afe2-d231800d36fb}</Project>
-      <Name>Select Target</Name>
-    </ProjectReference>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Libraries;
 
 namespace Results_Processing
 {
@@ -13,21 +14,8 @@ namespace Results_Processing
         static void Main(string[] args)
         {
             table t9 = new table(table.table9);
-            List<double> Results = new List<double>();
-            try
-            {
-                using (StreamReader sr = new StreamReader("input.txt"))
-                {
-                    while (!sr.EndOfStream)
-                        Results.Add(double.Parse(sr.ReadLine()));//Чтение
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                Console.ReadLine();
-                return;
-            }
+            ReaderResults r = new ReaderResults("input.txt");
+            List<double> Results = r.Results;
 
             Console.WriteLine("Считанные данные:");
             for (int i = 0; i < Results.Count; i++)
@@ -55,7 +43,7 @@ namespace Results_Processing
                 {
                     case 1:
                         Console.Write("Среднее арифметическое: ");
-                        Console.WriteLine(Avg(Results));
+                        Console.WriteLine(MyMath.Avg(Results));
                         break;
                     case 2:
                         Console.Write("Доверительный интервал для среднего: ");
@@ -76,7 +64,7 @@ namespace Results_Processing
 
         static double ProbabilityInTheRange(List<double> input)
         {
-            var b = StandardDeviation(input);
+            var b = MyMath.StandardDeviation(input);
             double e = 0.005;
 
             double t = e / b;
@@ -97,19 +85,7 @@ namespace Results_Processing
             return output;
         }
 
-        /// <summary>
-        /// Расчет среднего арифметического
-        /// </summary>
-        /// <param name="input">Список значений</param>
-        /// <returns>Среднее арифметическое</returns>
-        static double Avg(List<double> input)
-        {
-            double avg = 0;
-            for (int i = 0; i < input.Count; i++)
-                avg += input[i];
-            avg /= input.Count;
-            return avg;
-        }
+
 
         /// <summary>
         /// Доверительные интервалы для среднего значения
@@ -118,24 +94,9 @@ namespace Results_Processing
         /// <returns>вычесленный интервал +- E</returns>
         static double ConfidenceInterval(List<double> input, double t)
         {
-            double So = StandardDeviation(input) / Math.Sqrt(input.Count);
+            double So = MyMath.StandardDeviation(input) / Math.Sqrt(input.Count);
             return So * t;
         }
-
-
-        /// <summary>
-        /// Среднее квадратическое отклонение
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        public static double StandardDeviation(List<double> input)
-        {
-            var srX = Avg(input);
-            double sum = 0;
-            for (int i = 0; i < input.Count; i++)
-                sum += Math.Pow(input[i] - srX, 2);
-            double S = Math.Sqrt(sum / input.Count);
-            return S;
-        }
+       
     }
 }

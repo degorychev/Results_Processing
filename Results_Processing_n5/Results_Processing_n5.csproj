@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4C11EDE2-7D33-495B-9293-B805B207B1C2}</ProjectGuid>
+    <ProjectGuid>{2063B70A-9E19-4F3E-8756-16DF4FF8DF04}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Results_Processing_n7</RootNamespace>
-    <AssemblyName>Results_Processing_n7</AssemblyName>
+    <RootNamespace>Results_Processing_n5</RootNamespace>
+    <AssemblyName>Results_Processing_n5</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -53,18 +53,15 @@
     <Content Include="input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="input2.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Libraries\Libraries.csproj">
       <Project>{68447ff2-3ba0-47f0-b899-aaf3fecf65d5}</Project>
       <Name>Libraries</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Select_Target_2\Select_Target_2.csproj">
-      <Project>{edc6214c-c480-4432-874f-d4dd9b7e7e2b}</Project>
-      <Name>Select_Target_2</Name>
+    <ProjectReference Include="..\Select Target\Select Target.csproj">
+      <Project>{3ddf1df5-0170-4b9e-afe2-d231800d36fb}</Project>
+      <Name>Select Target</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

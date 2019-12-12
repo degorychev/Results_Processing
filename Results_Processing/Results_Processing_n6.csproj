@@ -55,6 +55,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Libraries\Libraries.csproj">
+      <Project>{68447ff2-3ba0-47f0-b899-aaf3fecf65d5}</Project>
+      <Name>Libraries</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Select Target\Select Target.csproj">
       <Project>{3ddf1df5-0170-4b9e-afe2-d231800d36fb}</Project>
       <Name>Select Target</Name>

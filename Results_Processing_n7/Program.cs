@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Libraries;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,29 +14,16 @@ namespace Results_Processing_n7
         static void Main(string[] args)
         {
             int n = 15;
-            List<double> Results = new List<double>();
-            try
-            {
-                using (StreamReader sr = new StreamReader("input.txt"))
-                {
-                    while (!sr.EndOfStream)
-                        Results.Add(double.Parse(sr.ReadLine()));//Чтение
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                Console.ReadLine();
-                return;
-            }
+            ReaderResults r = new ReaderResults("input.txt", n);
+            List<double> Results = r.Results;
 
             Console.WriteLine("Считанные данные:");
-            for (int i = 0; i < Math.Min(Results.Count, n); i++)
+            for (int i = 0; i < Results.Count; i++)
                 Console.Write("(" + (i + 1).ToString() + ")" + " " + Results[i] + " ");
 
-            var S = StandardDeviation(Results);
-            double Vmax = (Results.Max() - Avg(Results)) / S;
-            double Vmin = (Avg(Results)-Results.Min()) / S;
+            var S = MyMath.StandardDeviation(Results);
+            double Vmax = (Results.Max() - MyMath.Avg(Results)) / S;
+            double Vmin = (MyMath.Avg(Results) - Results.Min()) / S;
 
             Console.WriteLine();
             Console.WriteLine();
@@ -57,28 +45,17 @@ namespace Results_Processing_n7
             Console.WriteLine();
             /////////////////////////////////////
             ///
+
             Results.Clear();
-            try
-            {
-                using (StreamReader sr = new StreamReader("input2.txt"))
-                {
-                    while (!sr.EndOfStream)
-                        Results.Add(double.Parse(sr.ReadLine()));//Чтение
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                Console.ReadLine();
-                return;
-            }
+            r = new ReaderResults("input2.txt", n);
+            Results = r.Results;
             Console.WriteLine("Считанные данные:");
             for (int i = 0; i < Math.Min(Results.Count, n); i++)
                 Console.Write("(" + (i + 1).ToString() + ")" + " " + Results[i] + " ");
 
-            S = StandardDeviation(Results);
-            Vmax = (Results.Max() - Avg(Results)) / S;
-            Vmin = (Avg(Results) - Results.Min()) / S;
+            S = MyMath.StandardDeviation(Results);
+            Vmax = (Results.Max() - MyMath.Avg(Results)) / S;
+            Vmin = (MyMath.Avg(Results) - Results.Min()) / S;
 
             Console.WriteLine();
             Console.WriteLine();
@@ -112,35 +89,6 @@ namespace Results_Processing_n7
 
             Console.ReadLine();
 
-        }
-
-        /// <summary>
-        /// Среднее квадратическое отклонение
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        public static double StandardDeviation(List<double> input)
-        {
-            var srX = Avg(input);
-            double sum = 0;
-            for (int i = 0; i < input.Count; i++)
-                sum += Math.Pow(input[i] - srX, 2);
-            double S = Math.Sqrt(sum / input.Count);
-            return S;
-        }
-
-        /// <summary>
-        /// Расчет среднего арифметического
-        /// </summary>
-        /// <param name="input">Список значений</param>
-        /// <returns>Среднее арифметическое</returns>
-        static double Avg(List<double> input)
-        {
-            double avg = 0;
-            for (int i = 0; i < input.Count; i++)
-                avg += input[i];
-            avg /= input.Count;
-            return avg;
         }
     }
 }
